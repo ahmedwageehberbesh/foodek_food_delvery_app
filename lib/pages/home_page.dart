@@ -1,3 +1,4 @@
+import 'package:build_food_delivery_app_with_flutter/pages/food_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:build_food_delivery_app_with_flutter/models/food_item.dart';
 import 'package:build_food_delivery_app_with_flutter/widgets/food_grid_item.dart';
@@ -32,7 +33,20 @@ class HomePage extends StatelessWidget {
                 mainAxisSpacing: size.height * 0.02,
                 crossAxisSpacing: size.width * 0.02,
               ),
-              itemBuilder: (context, index) => FoodGridItem(foodindex: index),
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  debugPrint('Tapped on ${food[index].name}');
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return FoodDetailsPage();
+                      },
+                    ),
+                  );
+                  
+                },
+                child: FoodGridItem(foodindex: index),
+              ),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
             ),
