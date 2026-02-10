@@ -1,21 +1,23 @@
 import 'package:build_food_delivery_app_with_flutter/models/food_item.dart';
+import 'package:build_food_delivery_app_with_flutter/widgets/coustom_secondary_button.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteButton extends StatefulWidget {
   final int foodindex;
-  final BoxConstraints constraints;
+  final double hight;
+  final double width;
 
   FavoriteButton({
     super.key,
     required this.foodindex,
-    required this.constraints,
+    required this.hight,
+    required this.width,
   }) {
     debugPrint('Constructor FavoriteButton Called !');
   }
 
   @override
   State<FavoriteButton> createState() {
-    debugPrint('CreateState FavoriteButton Called !');
     return _FavoriteButtonState();
   }
 }
@@ -41,26 +43,17 @@ class _FavoriteButtonState extends State<FavoriteButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: widget.constraints.maxHeight * 0.2,
-      width: widget.constraints.maxHeight * 0.2,
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: InkWell(
-        onTap: () => setState(() {
-          food[widget.foodindex] = food[widget.foodindex].copeyWith(
-            isFavorite: !food[widget.foodindex].isFavorite,
-          );
-        }),
-        child: Icon(
-          food[widget.foodindex].isFavorite
-              ? Icons.favorite
-              : Icons.favorite_border,
-          color: Theme.of(context).primaryColor,
-        ),
-      ),
+    return CoustomSecondaryButton(
+      hight: widget.hight,
+      width: widget.width,
+      onTap: () => setState(() {
+        food[widget.foodindex] = food[widget.foodindex].copeyWith(
+          isFavorite: !food[widget.foodindex].isFavorite,
+        );
+      }),
+      iconData: food[widget.foodindex].isFavorite
+          ? Icons.favorite
+          : Icons.favorite_border,
     );
   }
 }

@@ -48,7 +48,7 @@ class _FavoritePageState extends State<FavoritePage> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
-                  return FoodDetailsPage();
+                  return FoodDetailsPage(foodItem: favoriteItems[index]);
                 },
               ),
             );

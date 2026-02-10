@@ -30,7 +30,8 @@ class FoodGridItem extends StatelessWidget {
                     alignment: Alignment.topRight,
                     child: FavoriteButton(
                       foodindex: foodindex,
-                      constraints: constraints,
+                      hight: constraints.maxHeight * 0.15,
+                      width: constraints.maxWidth * 0.15,
                     ),
                   ),
                 ],
