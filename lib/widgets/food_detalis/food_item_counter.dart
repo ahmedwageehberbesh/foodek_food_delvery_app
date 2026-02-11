@@ -8,6 +8,22 @@ class FoodItemCounter extends StatefulWidget {
 }
 
 class _FoodItemCounterState extends State<FoodItemCounter> {
+  int counter = 1;
+
+  void incrementCounter() {
+    setState(() {
+      counter++;
+    });
+  }
+
+  void decrementCounter() {
+    if (counter > 1) {
+      setState(() {
+        counter--;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -20,17 +36,22 @@ class _FoodItemCounterState extends State<FoodItemCounter> {
         child: Row(
           children: [
             InkWell(
-              onTap: () {},
+              onTap: () => decrementCounter(),
               child: Text(
                 "-",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
             const SizedBox(width: 16.0),
-            Text("0", style: Theme.of(context).textTheme.titleLarge),
+            Text(
+              counter.toString(),
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: counter > 1 ? Colors.black : Colors.grey,
+              ),
+            ),
             const SizedBox(width: 16.0),
             InkWell(
-              onTap: () {},
+              onTap: () => incrementCounter(),
               child: Text(
                 "+",
                 style: Theme.of(context).textTheme.headlineMedium,
