@@ -1,6 +1,7 @@
 import 'package:build_food_delivery_app_with_flutter/models/food_item.dart';
-import 'package:build_food_delivery_app_with_flutter/widgets/coustom_back_buttom.dart';
-import 'package:build_food_delivery_app_with_flutter/widgets/favorite_button.dart';
+import 'package:build_food_delivery_app_with_flutter/widgets/food_detalis/food_item_counter.dart';
+import 'package:build_food_delivery_app_with_flutter/widgets/food_detalis/property_item.dart';
+import 'package:build_food_delivery_app_with_flutter/widgets/food_detalis/top_banner.dart';
 import 'package:flutter/material.dart';
 
 class FoodDetailsPage extends StatelessWidget {
@@ -11,53 +12,113 @@ class FoodDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      // appBar: AppBar(),
-      body: Column(
-        children: [
-          Stack(
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(color: Colors.grey.withOpacity(0.15)),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8.0,
-                    horizontal: 16.0,
-                  ),
-                  child: SafeArea(
-                    child: SizedBox(
-                      height: size.height * 0.4,
-                      width: size.width,
-                      child: Column(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(children: [TopBanner(foodItem: foodItem)]),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 16.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CoustomBackButtom(
-                                hight: size.height * 0.05,
-                                width: size.width * 0.1,
-                              ),
-                              FavoriteButton(
-                                foodindex: 1,
-                                hight: size.height * 0.05,
-                                width: size.width * 0.1,
-                              ),
-                            ],
+                          Text(
+                            foodItem.name,
+                            style: Theme.of(context).textTheme.headlineSmall!
+                                .copyWith(fontWeight: FontWeight.w600),
                           ),
-                          SizedBox(height: size.height * 0.02),
-                          Image.network(
-                            foodItem.imageUrl,
-                            fit: BoxFit.fitWidth,
-                            height: size.height * 0.3,
+                          const SizedBox(height: 8.0),
+                          Text(
+                            'Buffalo burger ',
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyLarge!.copyWith(color: Colors.grey),
                           ),
                         ],
                       ),
+                      FoodItemCounter(),
+                    ],
+                  ),
+                  const SizedBox(height: 16.0),
+                  IntrinsicHeight(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        PropertyItem(
+                          propertyName: 'Size',
+                          propertyValue: 'Medium',
+                        ),
+                        VerticalDivider(
+                          indent: 0,
+                          endIndent: 0,
+                          color: Colors.grey,
+                          thickness: 1.0,
+                          width: size.width * 0.02,
+                        ),
+                        PropertyItem(
+                          propertyName: 'Cooking',
+                          propertyValue: '10-20 min',
+                        ),
+                        VerticalDivider(
+                          indent: 0,
+                          endIndent: 0,
+                          color: Colors.grey,
+                          thickness: 1.0,
+                          width: size.width * 0.02,
+                        ),
+                        PropertyItem(
+                          propertyName: 'Calories',
+                          propertyValue: '150 Kcal',
+                        ),
+                      ],
                     ),
                   ),
-                ),
+                  const SizedBox(height: 16.0),
+                  Text(
+                    "lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nunc.lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nunc.",
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium!.copyWith(color: Colors.grey),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "\$${foodItem.price}",
+                        style: Theme.of(context).textTheme.headlineMedium!
+                            .copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                      ),
+                      const SizedBox(width: 16.0),
+                      Expanded(
+                        child: SizedBox(
+                          height: size.height * 0.06,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Checkout'),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16.0),
+                ],
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
