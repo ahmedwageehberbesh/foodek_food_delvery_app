@@ -3,7 +3,7 @@ import 'package:build_food_delivery_app_with_flutter/widgets/coustom_back_buttom
 import 'package:build_food_delivery_app_with_flutter/widgets/favorite_button.dart';
 import 'package:build_food_delivery_app_with_flutter/widgets/food_detalis/food_item_counter.dart';
 import 'package:build_food_delivery_app_with_flutter/widgets/food_detalis/property_item.dart';
-import 'package:build_food_delivery_app_with_flutter/widgets/food_detalis/top_banner.dart';
+// import 'package:build_food_delivery_app_with_flutter/widgets/food_detalis/top_banner.dart';
 import 'package:flutter/material.dart';
 
 class FoodDetailsPage extends StatelessWidget {
@@ -27,6 +27,9 @@ class FoodDetailsPage extends StatelessWidget {
                     leading: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CoustomBackButtom(
+                        onTap: () => Navigator.of(
+                          context,
+                        ).pop<String>(food[foodIndex].name),
                         hight: size.height * 0.03,
                         width: size.width * 0.02,
                       ),
@@ -45,7 +48,7 @@ class FoodDetailsPage extends StatelessWidget {
                     flexibleSpace: FlexibleSpaceBar(
                       background: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: Colors.grey.withOpacity(0.15),
+                          color: Colors.grey.withValues(alpha: 0.15),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),

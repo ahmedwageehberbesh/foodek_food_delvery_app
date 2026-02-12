@@ -13,7 +13,7 @@ class TopBanner extends StatelessWidget {
     return Stack(
       children: [
         DecoratedBox(
-          decoration: BoxDecoration(color: Colors.grey.withOpacity(0.15)),
+          decoration: BoxDecoration(color: Colors.grey.withValues(alpha:0.15)),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 8.0,
@@ -29,6 +29,7 @@ class TopBanner extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CoustomBackButtom(
+                          onTap: () => ()=>Navigator.of(context).pop(),
                           hight: size.height * 0.05,
                           width: size.width * 0.1,
                         ),

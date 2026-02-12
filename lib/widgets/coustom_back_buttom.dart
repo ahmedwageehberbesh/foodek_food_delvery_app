@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 class CoustomBackButtom extends StatelessWidget {
   final double hight;
   final double width;
+  final VoidCallback onTap;
   const CoustomBackButtom({
     super.key,
     required this.hight,
     required this.width,
+    required this.onTap,
   });
 
   @override
@@ -17,7 +19,7 @@ class CoustomBackButtom extends StatelessWidget {
     return CoustomSecondaryButton(
       hight: hight,
       width: width,
-      onTap: () => Navigator.of(context).pop(),
+      onTap: onTap,
       iconData: Platform.isIOS ? Icons.arrow_back_ios_new : Icons.arrow_back,
     );
   }
