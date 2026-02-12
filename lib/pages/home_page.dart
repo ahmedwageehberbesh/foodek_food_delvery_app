@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:build_food_delivery_app_with_flutter/models/food_item.dart';
 import 'package:build_food_delivery_app_with_flutter/widgets/food_grid_item.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -36,13 +41,15 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
                   debugPrint('Tapped on ${food[index].name}');
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return FoodDetailsPage(foodIndex: index);
-                      },
-                    ),
-                  );
+                  Navigator.of(context)
+                      .push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return FoodDetailsPage(foodIndex: index);
+                          },
+                        ),
+                      )
+                      .then((value) => setState(() {}));
                 },
                 child: FoodGridItem(foodindex: index),
               ),
