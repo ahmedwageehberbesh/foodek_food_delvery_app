@@ -1,4 +1,5 @@
 import 'package:build_food_delivery_app_with_flutter/models/food_item.dart';
+import 'package:build_food_delivery_app_with_flutter/ui_models/food_details_args.dart';
 import 'package:build_food_delivery_app_with_flutter/widgets/coustom_back_buttom.dart';
 import 'package:build_food_delivery_app_with_flutter/widgets/favorite_button.dart';
 import 'package:build_food_delivery_app_with_flutter/widgets/food_detalis/food_item_counter.dart';
@@ -7,12 +8,15 @@ import 'package:build_food_delivery_app_with_flutter/widgets/food_detalis/proper
 import 'package:flutter/material.dart';
 
 class FoodDetailsPage extends StatelessWidget {
-  final int foodIndex;
-  const FoodDetailsPage({super.key, required this.foodIndex});
+  const FoodDetailsPage({super.key});
+  static const routeName = '/food_details';
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final FoodDetailsArgs foodArgs =
+        ModalRoute.of(context)!.settings.arguments as FoodDetailsArgs;
+    final foodIndex = foodArgs.foodIndex;
     return Scaffold(
       body: SafeArea(
         top: false,

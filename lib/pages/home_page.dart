@@ -1,4 +1,6 @@
+// import 'package:build_food_delivery_app_with_flutter/pages/food_details_page.dart';
 import 'package:build_food_delivery_app_with_flutter/pages/food_details_page.dart';
+import 'package:build_food_delivery_app_with_flutter/ui_models/food_details_args.dart';
 import 'package:flutter/material.dart';
 import 'package:build_food_delivery_app_with_flutter/models/food_item.dart';
 import 'package:build_food_delivery_app_with_flutter/widgets/food_grid_item.dart';
@@ -41,15 +43,12 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
                   debugPrint('Tapped on ${food[index].name}');
-                  Navigator.of(context)
-                      .push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return FoodDetailsPage(foodIndex: index);
-                          },
-                        ),
-                      )
-                      .then((value) => setState(() {}));
+                  Navigator.of(
+                    context,
+                  ).pushNamed(FoodDetailsPage.routeName, arguments: FoodDetailsArgs(foodIndex: index)).then((value) {
+                    setState(() {});
+                    debugPrint("The value returnd in home page $value");
+                  });
                 },
                 child: FoodGridItem(foodindex: index),
               ),

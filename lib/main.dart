@@ -1,4 +1,5 @@
 import 'package:build_food_delivery_app_with_flutter/pages/bottom_navbar.dart';
+import 'package:build_food_delivery_app_with_flutter/pages/food_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 //import 'package:build_food_delivery_app_with_flutter/pages/home_page.dart';
@@ -41,7 +42,11 @@ class MyApp extends StatelessWidget {
         fontFamily: 'OpenSans',
         useMaterial3: false,
       ),
-      home: BottomNavbar(),
+      // home: const BottomNavbar(),
+      routes: {
+        '/': (context) => const BottomNavbar(),
+       FoodDetailsPage.routeName: (context) =>const FoodDetailsPage(),
+      },
     );
   }
 }

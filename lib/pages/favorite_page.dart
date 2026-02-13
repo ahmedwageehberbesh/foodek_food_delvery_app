@@ -1,5 +1,6 @@
 import 'package:build_food_delivery_app_with_flutter/models/food_item.dart';
 import 'package:build_food_delivery_app_with_flutter/pages/food_details_page.dart';
+import 'package:build_food_delivery_app_with_flutter/ui_models/food_details_args.dart';
 import 'package:flutter/material.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -45,13 +46,15 @@ class _FavoritePageState extends State<FavoritePage> {
         itemCount: favoriteItems.length,
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return FoodDetailsPage(foodIndex: index);
-                },
-              ),
-            );
+            Navigator.of(context)
+                .pushNamed(
+                  FoodDetailsPage.routeName,
+                  arguments: FoodDetailsArgs(foodIndex: index),
+                )
+                .then((value) {
+                  setState(() {});
+                  debugPrint("the value returnd in favotites page is $value");
+                });
           },
           child: Card(
             shape: RoundedRectangleBorder(

@@ -13,7 +13,7 @@ class FavoriteButton extends StatefulWidget {
     required this.hight,
     required this.width,
   }) {
-    debugPrint('Constructor FavoriteButton Called !');
+    // debugPrint('Constructor FavoriteButton Called !');
   }
 
   @override
@@ -23,23 +23,23 @@ class FavoriteButton extends StatefulWidget {
 }
 
 class _FavoriteButtonState extends State<FavoriteButton> {
-  @override
-  void initState() {
-    super.initState();
-    debugPrint('InitState FavoriteButton Called ! _ ${widget.foodindex}');
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   debugPrint('InitState FavoriteButton Called ! _ ${widget.foodindex}');
+  // }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    debugPrint('DidChangeDependencies FavoriteButton Called !');
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   debugPrint('DidChangeDependencies FavoriteButton Called !');
+  // }
 
-  @override
-  void didUpdateWidget(covariant FavoriteButton oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    debugPrint('DidUpdateWidget FavoriteButton Called !');
-  }
+  // @override
+  // void didUpdateWidget(covariant FavoriteButton oldWidget) {
+  //   super.didUpdateWidget(oldWidget);
+  //   debugPrint('DidUpdateWidget FavoriteButton Called !');
+  // }
 
   @override
   Widget build(BuildContext context) {
