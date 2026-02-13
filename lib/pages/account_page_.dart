@@ -1,3 +1,4 @@
+import 'package:build_food_delivery_app_with_flutter/utilities/app_assets.dart';
 import 'package:flutter/material.dart';
 
 class AccountPage extends StatelessWidget {
@@ -48,7 +49,7 @@ class AccountPage extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-          image: AssetImage('assets/images/Ahmed_Wageeh.jpeg'),
+          image: AssetImage(AppAssets.profitePhoto),
           fit: BoxFit.contain,
         ),
       ),

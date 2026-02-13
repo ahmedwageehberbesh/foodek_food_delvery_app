@@ -1,6 +1,7 @@
 import 'package:build_food_delivery_app_with_flutter/models/food_item.dart';
 import 'package:build_food_delivery_app_with_flutter/pages/food_details_page.dart';
 import 'package:build_food_delivery_app_with_flutter/ui_models/food_details_args.dart';
+import 'package:build_food_delivery_app_with_flutter/utilities/app_assets.dart';
 import 'package:flutter/material.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -25,7 +26,7 @@ class _FavoritePageState extends State<FavoritePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/nothing-found.png',
+              AppAssets.nonthingFound,
               height: isportrait ? size.height * 0.3 : size.height * 0.4,
               width: size.width * 0.6,
               fit: BoxFit.contain,
@@ -46,10 +47,11 @@ class _FavoritePageState extends State<FavoritePage> {
         itemCount: favoriteItems.length,
         itemBuilder: (context, index) => InkWell(
           onTap: () {
+            final targetesIndex = food.indexOf(favoriteItems[index]);
             Navigator.of(context)
                 .pushNamed(
                   FoodDetailsPage.routeName,
-                  arguments: FoodDetailsArgs(foodIndex: index),
+                  arguments: FoodDetailsArgs(foodIndex: targetesIndex),
                 )
                 .then((value) {
                   setState(() {});
@@ -65,7 +67,7 @@ class _FavoritePageState extends State<FavoritePage> {
               child: Row(
                 children: [
                   Image.network(
-                    food[index].imageUrl,
+                    favoriteItems[index].imageUrl,
                     height: isportrait ? size.height * 0.1 : size.height * 0.2,
                     width: size.width * 0.2,
                     fit: BoxFit.contain,
@@ -77,13 +79,13 @@ class _FavoritePageState extends State<FavoritePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          food[index].name,
+                          favoriteItems[index].name,
                           style: Theme.of(context).textTheme.titleLarge!
                               .copyWith(fontWeight: FontWeight.w600),
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          '\$${food[index].price}',
+                          '\$${favoriteItems[index].price}',
                           style: Theme.of(context).textTheme.bodyLarge!
                               .copyWith(
                                 color: Theme.of(context).primaryColor,

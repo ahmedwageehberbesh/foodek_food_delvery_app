@@ -4,11 +4,17 @@ import 'package:flutter/material.dart';
 
 class FoodGridItem extends StatelessWidget {
   final int foodindex;
+  final List<FoodItem> filteredfood;
 
-  const FoodGridItem({super.key, required this.foodindex});
+  const FoodGridItem({
+    super.key,
+    required this.foodindex,
+    required this.filteredfood,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final targetedIndex = food.indexOf(filteredfood[foodindex]);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -23,13 +29,13 @@ class FoodGridItem extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 children: [
                   Image.network(
-                    food[foodindex].imageUrl,
+                    filteredfood[foodindex].imageUrl,
                     height: constraints.maxHeight * 0.5,
                   ),
                   Align(
                     alignment: Alignment.topRight,
                     child: FavoriteButton(
-                      foodindex: foodindex,
+                      foodindex: targetedIndex,
                       hight: constraints.maxHeight * 0.15,
                       width: constraints.maxWidth * 0.15,
                     ),
@@ -42,7 +48,7 @@ class FoodGridItem extends StatelessWidget {
                 height: constraints.maxHeight * 0.2,
                 child: FittedBox(
                   child: Text(
-                    food[foodindex].name,
+                    filteredfood[foodindex].name,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       fontWeight: FontWeight.w600,
                       fontFamily: 'OpenSans',
@@ -55,7 +61,7 @@ class FoodGridItem extends StatelessWidget {
                 height: constraints.maxHeight * 0.15,
                 child: FittedBox(
                   child: Text(
-                    "\$${food[foodindex].price}",
+                    "\$${filteredfood[foodindex].price}",
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.bold,
