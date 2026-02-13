@@ -55,7 +55,11 @@ class _HomePageState extends State<HomePage> {
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                        enableCategoryFilter = !enableCategoryFilter;
+                        if (categoryChosenId == categories[index].id ||
+                            !enableCategoryFilter) {
+                          enableCategoryFilter = !enableCategoryFilter;
+                        }
+
                         if (enableCategoryFilter) {
                           categoryChosenId = categories[index].id;
                           filteredfood = food
